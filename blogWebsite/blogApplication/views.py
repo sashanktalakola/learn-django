@@ -32,3 +32,6 @@ def author(request, username):
         "authorData": authorData,
         "authorArticles": authorArticlesData
     })
+
+def viewPost(request, username, slug):
+    return render(request, "blogApplication/post.html")

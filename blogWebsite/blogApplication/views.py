@@ -17,3 +17,18 @@ def index(request):
         "featuredArticles": featuredArticlesData,
         "allArticles": allArticlesData
     })
+
+def author(request, username):
+
+    dataPath = f"{settings.BASE_DIR}/data/author.json"
+
+    with open(dataPath) as f:
+        pageData = json.load(f)
+
+    authorData = pageData["authorData"]
+    authorArticlesData = pageData["authorArticles"]
+
+    return render(request, "blogApplication/author.html", {
+        "authorData": authorData,
+        "authorArticles": authorArticlesData
+    })

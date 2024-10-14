@@ -34,4 +34,14 @@ def author(request, username):
     })
 
 def viewPost(request, username, slug):
-    return render(request, "blogApplication/post.html")
+
+    dataPath = f"{settings.BASE_DIR}/data/post.json"
+
+    with open(dataPath) as f:
+        pageData = json.load(f)
+
+
+    return render(request, "blogApplication/post.html", {
+        "pageData": pageData,
+        
+    })

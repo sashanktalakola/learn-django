@@ -30,9 +30,12 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     content = models.TextField()
+    short_intro = models.CharField(max_length=300, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
+    image_path = models.CharField(max_length=255, blank=True, null=True)
+    time_to_read = models.IntegerField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
 

@@ -1,17 +1,17 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.conf import settings
+from .models import Post
 import json
 
 # Create your views here.
 def index(request):
 
-    dataPath = f"{settings.BASE_DIR}/data/index.json"
+    posts = Post.objects.all()[:10]
 
-    with open(dataPath) as f:
-        pageData = json.load(f)
-    
-    featuredArticlesData = pageData["featured-articles"]
-    allArticlesData = pageData["all-articles"]
+    featuredArticlesData = posts[:4]
+    allArticlesData = posts[4:]
+
 
     return render(request, "blogApplication/index.html", {
         "featuredArticles": featuredArticlesData,
@@ -34,6 +34,8 @@ def author(request, username):
     })
 
 def viewPost(request, username, slug):
+
+    postData = get_object_or_404(Post, user__username=username, slug=slug)
 
     dataPath = f"{settings.BASE_DIR}/data/post.json"
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.conf import settings
-from .models import Post
+from .models import Post, User
 import json
 
 # Create your views here.
@@ -20,17 +20,12 @@ def index(request):
 
 def author(request, username):
 
-    dataPath = f"{settings.BASE_DIR}/data/author.json"
-
-    with open(dataPath) as f:
-        pageData = json.load(f)
-
-    authorData = pageData["authorData"]
-    authorArticlesData = pageData["authorArticles"]
+    authorData = get_object_or_404(User, username=username)
+    authorArticles = Post.objects.filter(user__username=username)[:3]
 
     return render(request, "blogApplication/author.html", {
         "authorData": authorData,
-        "authorArticles": authorArticlesData
+        "authorArticles": authorArticles
     })
 
 def viewPost(request, username, slug):

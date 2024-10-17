@@ -10,7 +10,7 @@ class User(models.Model):
     email = models.EmailField(unique=True, blank=False, null=False)
     password = models.CharField(max_length=128, blank=False, null=False)
     date_of_birth = models.DateField(blank=False, null=False)
-    profile_picture = models.CharField(max_length=255, blank=True, null=True)
+    profile_picture = models.CharField(max_length=255, blank=True, null=True, default="img/default/user-image/default-user-img.jpg")
     bio = models.TextField(blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 

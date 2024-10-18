@@ -8,7 +8,9 @@
 {% block pageContent %}
     
     <div class="container">
+
         <div class="mainheading">
+
             <h1 class="sitetitle">Mediumish</h1>
             <p class="lead">
                 Bootstrap theme, medium style, simply perfect for bloggers
@@ -16,6 +18,7 @@
         </div>
 
         <section class="featured-posts">
+
             <div class="section-title">
                 <h2><span>Featured</span></h2>
             </div>
@@ -26,24 +29,32 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-5 wrapthumbnail">
+
                             <a href="{% url "post-page" username=article.user.username slug=article.slug %}">
                                 <div class="thumbnail" style="background-image: url('{% static 'img/article-images/' %}{{ article.slug }}/{{ article.image_path }}');">
                                 </div>
                             </a>
+
                         </div>
                         <div class="col-md-7">
                             <div class="card-block">
+
                                 <h2 class="card-title"><a href="{% url "post-page" username=article.user.username slug=article.slug %}">{{ article.title }}</a></h2>
                                 <h4 class="card-text">{{ article.short_intro }}</h4>
+
                                 <div class="metafooter">
                                     <div class="wrapfooter">
+
                                         <span class="meta-footer-thumb">
-                                        <a href="{% url "author-page" username=article.user.username %}"><img class="author-thumb" src="{% static article.user.profile_picture %}" alt="{{ article.user.username }}"></a>
+                                            <a href="{% url "author-page" username=article.user.username %}"><img class="author-thumb" src="{% static article.user.profile_picture %}" alt="{{ article.user.username }}"></a>
                                         </span>
-                                        <span class="author-meta">
-                                        {% with fullname=article.user.first_name|add:" "|add:article.user.last_name %}
+                                        
+                                        <span class="author-meta"> 
+
+                                            {% with fullname=article.user.first_name|add:" "|add:article.user.last_name %}
                                             <span class="post-name"><a href="{% url "author-page" username=article.user.username %}">{{ fullname }}</a></span><br/>
-                                        {% endwith %}
+                                            {% endwith %}
+
                                             <span class="post-date">{{ article.created_at|date:"F j, Y" }}</span><span class="dot"></span><span class="post-read">{{ article.time_to_read }} min read</span>
                                         </span>
                                         <span class="post-read-more"><a href="{% url "post-page" username=article.user.username slug=article.slug %}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
@@ -53,6 +64,7 @@
                         </div>
                     </div>
                 </div>
+
                 {% endfor %}
 
             </div>
@@ -66,30 +78,41 @@
             <div class="card-columns listrecent">
 
                 {% for article in allArticles %}
+
                 <div class="card">
+
                     <a href="{% url "post-page" username=article.user.username slug=article.slug %}">
                         <img class="img-fluid" src="{% static 'img/article-images/' %}{{ article.slug }}/{{ article.image_path }}" alt="">
                     </a>
+
                     <div class="card-block">
+
                         <h2 class="card-title"><a href="{% url "post-page" username=article.user.username slug=article.slug %}">{{ article.title }}</a></h2>
                         <h4 class="card-text">{{ article.short_intro }}</h4>
+
                         <div class="metafooter">
                             <div class="wrapfooter">
+
                                 <span class="meta-footer-thumb">
+
                                 {% with fullname=article.user.first_name|add:" "|add:article.user.last_name %}
                                     <a href="{% url "author-page" username=article.user.username %}"><img class="author-thumb" src="{% static article.user.profile_picture %}" alt="{{ fullname }}"></a>
-                    
-                                    </span>
-                                    <span class="author-meta">
-                                    <span class="post-name"><a href="{% url "author-page" username=article.user.username %}">{{ fullname }}</a></span><br/>
+                                </span>
+
+                                <span class="author-meta">
+                                <span class="post-name"><a href="{% url "author-page" username=article.user.username %}">{{ fullname }}</a></span><br/>
+
                                 {% endwith %}
-                                <span class="post-date">{{ article.created_at|date:"F j, Y" }}</span><span class="dot"></span><span class="post-read">{{ article.time_to_read }} read</span>
+
+                                <span class="post-date">{{ article.created_at|date:"F j, Y" }}</span><span class="dot"></span><span class="post-read">{{ article.time_to_read }} min read</span>
                                 </span>
                                 <span class="post-read-more"><a href="{% url "post-page" username=article.user.username slug=article.slug %}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                
                 {% endfor %}
 
             </div>

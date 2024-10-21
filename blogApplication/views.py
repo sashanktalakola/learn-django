@@ -32,15 +32,10 @@ def viewPost(request, username, slug):
 
     postData = get_object_or_404(Post, user__username=username, slug=slug)
     postContent = PostContent.objects.filter(post=postData)
-
-    dataPath = f"{settings.BASE_DIR}/data/post.json"
-
-    with open(dataPath) as f:
-        pageData = json.load(f)
-
+    
 
     return render(request, "blogApplication/post.html", {
-        "pageData": pageData,
+        "pageData": postData,
         "postContent": postContent
         
     })

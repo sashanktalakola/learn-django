@@ -32,10 +32,14 @@ def viewPost(request, username, slug):
 
     postData = get_object_or_404(Post, user__username=username, slug=slug)
     postContent = PostContent.objects.filter(post=postData)
-    
+    postTags = postData.tags.all()
+    userPosts = Post.objects.filter(user__username=username).all()[:3]
+
 
     return render(request, "blogApplication/post.html", {
         "pageData": postData,
-        "postContent": postContent
+        "postContent": postContent,
+        "postTags": postTags,
+        "userPosts": userPosts
         
     })

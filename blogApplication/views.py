@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.conf import settings
-from .models import Post, User
+from .models import Post, User, PostContent
 import json
 
 # Create your views here.
@@ -31,6 +31,7 @@ def author(request, username):
 def viewPost(request, username, slug):
 
     postData = get_object_or_404(Post, user__username=username, slug=slug)
+    postContent = PostContent.objects.filter(post=postData)
 
     dataPath = f"{settings.BASE_DIR}/data/post.json"
 
@@ -40,5 +41,6 @@ def viewPost(request, username, slug):
 
     return render(request, "blogApplication/post.html", {
         "pageData": pageData,
+        "postContent": postContent
         
     })

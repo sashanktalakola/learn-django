@@ -45,8 +45,14 @@
             <img class="featured-image img-fluid" src="{% static pageData.image %}" alt="">
 
             <div class="article-post">
-				{% for articleBlock in pageData.data %}
-					{{ articleBlock|safe }}
+				{% for postItem in postContent %}
+
+					{% if postItem.content_type == "p" %}
+						<p> {{ postItem.content }} </p>
+					{% elif postItem.content_type == "quote" %}
+						<blockquote> {{ postItem.content }} </blockquote>
+					{% endif %}
+					
 				{% endfor %}
 			</div>
 

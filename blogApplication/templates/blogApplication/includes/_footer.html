@@ -1,7 +1,10 @@
 <div class="container">
 	<div class="footer">
 		<p class="pull-left">
-			 Copyright &copy; 2017 Your Website Name
+			Copyright &copy; <span id="current-year"></span> Your Website Name
+			<script>
+				document.getElementById('current-year').textContent = new Date().getFullYear();
+			</script>
 		</p>
 		<p class="pull-right">
 			 Mediumish Blog
